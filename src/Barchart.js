@@ -1,7 +1,7 @@
 import * as d3 from "d3";
 import { useEffect, useRef } from "react";
 
-const Barchart = ({ barColor, data, height: initialheight, id, width: initialWidth }) => {
+const Barchart = ({ barColor, data, height: initialheight, id, title, width: initialWidth }) => {
   const ref = useRef();
 
   useEffect(() => {
@@ -9,6 +9,7 @@ const Barchart = ({ barColor, data, height: initialheight, id, width: initialWid
     const margin = { top: 30, right: 30, bottom: 70, left: 60 };
     const width = initialWidth - margin.left - margin.right;
     const height = initialheight - margin.top - margin.bottom;
+    const yMax = Math.max(...data.map(({ value }) => value));
 
     // append the svg object to the body of the page
     const svg = d3
@@ -33,8 +34,17 @@ const Barchart = ({ barColor, data, height: initialheight, id, width: initialWid
       .attr("transform", "translate(-10,0)rotate(-45)")
       .style("text-anchor", "end");
 
+    // chart title
+    svg.append("text")
+      .attr("x", (width / 2))             
+      .attr("y", 0 - (margin.top / 2))
+      .attr("text-anchor", "middle")  
+      .style("font-size", "16px") 
+      .style("text-decoration", "underline")  
+      .text(title);
+
     // Add Y axis
-    const y = d3.scaleLinear().domain([0, 13000]).range([height, 0]);
+    const y = d3.scaleLinear().domain([0, yMax]).range([height, 0]);
     svg.append("g").call(d3.axisLeft(y));
 
     // Bars
