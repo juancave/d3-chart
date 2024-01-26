@@ -14,6 +14,17 @@ const data = [
 ];
 
 const data2 = [
+  { name: "Engineer", value: "5600" },
+  { name: "Plumber", value: "2000" },
+  { name: "Butcher", value: "500" },
+  { name: "Editor", value: "4000" },
+  { name: "Developer", value: "5000" },
+  { name: "Model", value: "1400" },
+  { name: "Teacher", value: "800" },
+  { name: "Driver", value: "760" },
+];
+
+const data3 = [
   { name: "Colombia", value: "38" },
   { name: "Ecuador", value: "37" },
   { name: "Venezuela", value: "36" },
@@ -41,15 +52,15 @@ const Charts = () => {
       <hr/>
       <Barchart
         barColor="#29437F"
-        data={data}
+        data={data2}
         height={defaults.height}
-        title="Chart 2 - Different bar color"
+        title="Chart 2 - Incomes - Different bar color"
         width={defaults.width}
       />
       <hr/>
       <Barchart
         barColor="#ffac2a"
-        data={data2}
+        data={data3}
         height={defaults.height}
         id="bar3"
         title="Chart 3 - Temperature"
